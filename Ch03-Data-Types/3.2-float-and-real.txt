@@ -1,0 +1,7 @@
+/*
+Approximate-number data types for use with floating point numeric data.
+*/
+
+SELECT CAST( PI() AS FLOAT) -- 3.141592653589793
+
+SELECT CAST( PI() AS REAL) -- 3.1415927
