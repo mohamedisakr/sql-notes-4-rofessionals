@@ -1,0 +1,9 @@
+/*
+Syntax:
+DECIMAL ( precision [ , scale] )
+NUMERIC ( precision [ , scale] )
+*/
+
+SELECT CAST(123 AS DECIMAL(5,2)); -- returns 123.00
+
+SELECT CAST(12345.12 AS NUMERIC(10,5)) --returns 12345.12000
