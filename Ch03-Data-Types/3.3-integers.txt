@@ -1,0 +1,5 @@
+/*
+smallint
+integer
+bigint
+*/
