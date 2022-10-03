@@ -1,0 +1,8 @@
+/*
+The bytea (byte array) data type allows the storage of binary strings or what is typically thought of as “raw bytes”.
+
+PostgreSQL supports both the typical formats for input and output
+(1) Hex Format
+(2) Escape Format 
+
+*/
