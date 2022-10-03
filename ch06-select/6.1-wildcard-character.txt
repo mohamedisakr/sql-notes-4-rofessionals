@@ -1,0 +1,63 @@
+/*
+* is the wildcard character used to select all available columns in a table.
+
+When used as a substitute for explicit column names, it returns all columns in all tables that a query is selecting FROM.
+
+This effect applies to all tables the query accesses through its JOIN clauses.
+
+*/
+
+
+-- return all fields of all rows of the Employees table
+SELECT * FROM Employees
+
+-- Dot notation
+-- To select all values from a specific table, the wildcard character can be applied to the table with dot notation
+-- This will return a data set with all fields on the Employee table, followed by just the Name field in the Departments
+-- table
+
+SELECT Employees.*,
+       Departments.Name
+FROM Employees
+    JOIN Departments
+        ON Departments.Id = Employees.DeptId;
+
+/*
+Warnings Against Use
+It is generally advised that using * is avoided in production code where possible, as it can cause a number of potential
+problems including:
+1. Excess IO, network load, memory use, and so on, due to the database engine reading data that is not needed and
+transmitting it to the front-end code. This is particularly a concern where there might be large fields such as 
+those used to store long notes or attached files.
+
+2. Further excess IO load if the database needs to spool internal results to disk as part of the processing for a 
+query more complex than SELECT <columns> FROM <table>.
+
+3. Extra processing (and/or even more IO) if some of the unneeded columns are: 
+computed columns in databases that support them
+in the case of selecting from a view, columns from a table/view that the query optimiser could otherwise optimise out
+
+4. The potential for unexpected errors if columns are added to tables and views later that results ambiguous column names.
+For example SELECT * FROM orders JOIN people ON people.id = orders.personid ORDER BY displayname 
+if a column column called displayname is added to the orders table to allow users to give their orders meaningful names 
+for future reference then the column name will appear twice in the output so the ORDER BY clause will be ambiguous which
+may cause errors ("ambiguous column name" in recent MS SQL Server versions), and if not in this example your application
+code might start displaying the order name where the person name is intended because the new column is the first of that
+name returned, and so on
+*/
+
+/*
+When Can You Use *, Bearing The Above Warning In Mind?
+While best avoided in production code, using * is fine as a shorthand when performing manual queries against the database
+for investigation or prototype work.
+
+Sometimes design decisions in your application make it unavoidable (in such circumstances, prefer tablealias.* over 
+just * where possible).
+
+When using EXISTS, such as SELECT A.col1, A.Col2 FROM A WHERE EXISTS (SELECT * FROM B where A.ID = B.A_ID), we are
+not returning any data from B. Thus a join is unnecessary, and the engine knows no values from B are to be returned,
+thus no performance hit for using *. 
+
+Similarly COUNT(*) is fine as it also doesn't actually return any of the columns, so only needs to read and process
+those that are used for filtering purposes.
+*/
