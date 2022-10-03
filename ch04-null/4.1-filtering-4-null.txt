@@ -1,0 +1,25 @@
+/*
+NULL means missing information or not applicable or missing value. 
+
+NULL is not a value, therefore, you cannot compare it with any other values like numbers or strings. The comparison of NULL
+with a value will always result in NULL, which means an unknown result.
+
+In addition, NULL is not equal to NULL so the following expression returns NULL:
+
+NULL = NULL
+
+When filtering for NULL in WHERE blocks is slightly different than filtering for specific values.
+
+We use IS NULL for null
+*/
+
+-- insert 2 rows
+INSERT INTO contacts(first_name, last_name, email, phone)
+VALUES ('John','Doe','john.doe@example.com',NULL),
+    ('Lily','Bush','lily.bush@example.com','(408-234-2764)');
+
+-- To find the contact who does not have a phone number you may come up with the following statement
+SELECT contact_id, first_name, last_name, email, phone
+FROM contacts
+WHERE phone IS NULL;
+
