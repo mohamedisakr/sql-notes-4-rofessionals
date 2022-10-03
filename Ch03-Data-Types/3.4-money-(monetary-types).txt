@@ -1,0 +1,10 @@
+/*
+Name	Storage Size	Description	Range
+money	8 bytes	currency amount		-92233720368547758.08 to +92233720368547758.07
+*/
+
+-- A money value can be cast to numeric without loss of precision. 
+
+Conversion to other types could potentially lose precision, and must also be done in two stages:
+
+SELECT '52093.89'::money::numeric::float8;
