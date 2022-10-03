@@ -1,0 +1,17 @@
+-- login with power user
+psql -U postgres
+
+-- create new user
+CREATE USER myuser WITH PASSWORD 'pass';
+
+-- create database
+CREATE DATABASE sql_notes WITH OWNER 'myuser' ENCODING 'UTF8';
+
+-- quit
+\q
+
+-- login with new user
+psql sql_notes myuser
+
+-- List tables
+\dt
