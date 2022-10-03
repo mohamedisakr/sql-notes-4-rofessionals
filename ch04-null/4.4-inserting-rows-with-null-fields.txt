@@ -1,0 +1,4 @@
+-- inserting a new person with no phone number
+
+INSERT INTO contacts(first_name, last_name, email, phone)
+VALUES ('John','Doe','john.doe@example.com',NULL);

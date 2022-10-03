@@ -1,4 +1,4 @@
-Setting a field to NULL works exactly like with any other value:
+-- Setting a field to NULL works exactly like with any other value:
 
 UPDATE contacts 
 SET phone = null 

@@ -1,4 +1,4 @@
-When creating tables it is possible to declare a column as nullable or non-nullable.
+-- When creating tables it is possible to declare a column as nullable or non-nullable.
 
 CREATE TABLE MyTable
 (
@@ -6,9 +6,11 @@ CREATE TABLE MyTable
   MyCol2 INT NULL -- nullable
 ) ;
 
+/*
 By default every column (except those in primary key constraint) is nullable unless we explicitly set NOT NULL constraint.
 
 Attempting to assign NULL to a non-nullable column will result in an error.
+*/
 
 INSERT INTO MyTable (MyCol1, MyCol2) VALUES (1, NULL) ; -- works fine
 INSERT INTO MyTable (MyCol1, MyCol2) VALUES (NULL, 2) ;
